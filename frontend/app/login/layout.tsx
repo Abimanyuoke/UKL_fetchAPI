@@ -1,4 +1,3 @@
-// Di layout.tsx atau paling atas di komponen
 import { Toaster } from 'sonner';
 
 import { ReactNode } from 'react';

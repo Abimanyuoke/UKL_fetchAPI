@@ -22,6 +22,14 @@ export default function PlaylistDetailPage() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 3000); // Loading selama 3 detik
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
         if (!id) return;
         const fetchSongs = async () => {
             setLoading(true);
@@ -58,7 +66,7 @@ export default function PlaylistDetailPage() {
                 </div>
 
                 {loading ? (
-                    <p className="text-center text-sm text-gray-500">Loading songs...</p>
+                    <p className="text-center text-sm text-gray-500 ">Loading songs...</p>
                 ) : songs.length === 0 ? (
                     <p className="text-center text-sm text-gray-500">No songs found.</p>
                 ) : (

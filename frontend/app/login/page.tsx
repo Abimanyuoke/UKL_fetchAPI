@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
     const [form, setForm] = useState({ username: '', password: '' });
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const router = useRouter();
 
     const handleChange = (e: { target: { name: any; value: any } }) =>
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,6 +30,7 @@ export default function LoginPage() {
             if (res.ok) {
                 toast.success('Login berhasil!');
                 console.log('User data:', data);
+                router.push('/playlist')
             } else {
                 toast.error(`Login gagal: ${data.message}`);
             }
